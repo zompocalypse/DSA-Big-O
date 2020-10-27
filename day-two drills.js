@@ -101,9 +101,37 @@ function isWhat(n) {
 }
 
 // 11. Tower of Hanoi
-function solveTowerOfHanoi() {
-  
+//    11.1 - 11.2 - Derive and implement an algorithm
+let count = 0;
+
+function solveTowerOfHanoi(number, source, destination, temp) {
+  if (number === 1) {
+    count++;
+    console.log(`disc moved from ${source} to ${destination} in ${count} moves`);
+  } else {
+    solveTowerOfHanoi(number - 1, source, temp, destination);
+    solveTowerOfHanoi(1, source, destination, temp);
+    solveTowerOfHanoi(number - 1, temp, destination, source);
+  }
+  return;
 }
+
+console.log(solveTowerOfHanoi(4, 'a', 'b', 'c'));
+
+//    11.3 - If you are given 5 disks, how do the rods look after 7 recursive calls?
+//        Source        Temp        Destination
+//
+//        
+//                      -
+//        ----          --
+//        -----         ---
+
+//    11.4 - How many moves needed to complete puzzle with:
+//        3 disks = 7
+//        4 disks = 15
+//        5 disks = 31
+
+//    11.5 - O(n^2) - Exponential, every call returns 3 calls that return 3 calls, etc etc etc
 
 
 // 12. Interative version
@@ -217,8 +245,8 @@ console.log(factorial(5));
 //    13.5 - String Splitter - O(n) - Linear, calls itself based on how many dividers exist in the string
 //    13.6 - Fibonacci - O(n^2) - Exponential, because it calls itself twice which then causes each of those to call itself twice
 //    13.7 - Factorial - O(n) - Linear, each call subtracts one until base case
-//    13.8 - Find a way out of the maze - 
-//    13.9 - Find ALL ways out of the maze - 
+//    13.8 - Find a way out of the maze - O(n^2) - Exponential, each call of the function calls itself 4 times.
+//    13.9 - Find ALL ways out of the maze - O(n^2) - Exponential, each call of the function calls itself 4 times.
 //    13.10 - Anagrams - O(n!) - Factorial, as you add a letter, the possible permutations increases insanely
 //    13.11 - Organization Chart - O(n) - Linear, each node is only visited once.
 //    13.12 - Binary Representation - O(log n) - the number of ticks increases but only a little if a larger number was used
